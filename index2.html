@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Coffee — Кофе-бар</title>
+  
+  <!-- Google Fonts: Inter/Plus Jakarta + Caveat for handwritten script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#22140E',      // Тёмно-кофейный фон как на макете
+              darker: '#160B07',    // Очень тёмно-кофейный
+              card: '#2D1B13',      // Фон карточки Hero
+              cream: '#F7F2EC',     // Светло-бежевый фон блоков
+              creamborder: '#E7DEC3', // Границы бежевых карточек
+              brown: '#4A2E20',     // Тёмно-коричневый для текста
+              accent: '#8C5230',    // Коричневая кнопка
+              accentHover: '#703F22',
+              badge: '#F0E7DB',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            script: ['"Caveat"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Плавный скролл и кастомный стилизованный скроллбар */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #160B07; }
+    ::-webkit-scrollbar-thumb { background: #8C5230; border-radius: 4px; }
+    
+    .oval-badge {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 9999px;
+      padding: 0.25rem 1.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-stone-100 font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+  <!-- TOP PROMO BANNER -->
+  <div class="bg-brand-accent text-white text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide">
+    <strong>Акция:</strong> Каждый 6-й стаканчик кофе бесплатно! 
+  </div>
+
+  <!-- HEADER -->
+  <header class="bg-brand-dark border-b border-white/10 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-full bg-black border-2 border-white/90 flex items-center justify-center p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <circle cx="50" cy="50" r="47" fill="#000" stroke="#fff" stroke-width="4"/>
+            <circle cx="50" cy="50" r="41" fill="#000" stroke="#fff" stroke-width="1.5"/>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <path d="M38 37c1-2 4-3 6-1 2 1 2 3 0 4-2 1-3 3-2 5 1 2 3 2 4 0 1-2 3-2 4-1s2 3 1 5c-1 2-3 3-5 3-2 1-4-1-5-3-1-1-3-2-4-2-2 0-3-2-2-4 1-2 2-4 3-6z" fill="#000"/>
+            <path d="M52 46c2-1 4 0 5 2 1 2 3 3 5 1 1-1 3-1 4 1 1 2 0 4-2 5-2 1-3 3-2 5 1 2-1 4-3 4-2 0-3-2-4-3-2-1-2-3-1-4 1-2 0-3-2-4-1-1-1-2 0-3z" fill="#000"/>
+            <path d="M42 55c2 1 3 3 2 5-1 2 0 4 2 5 1 1 1 3 0 4-2 1-3-1-4-3-1-2 0-4-1-6s-1-3 1-5z" fill="#000"/>
+            <ellipse cx="28" cy="50" rx="2.5" ry="4" fill="#fff" transform="rotate(-15 28 50)"/>
+            <ellipse cx="72" cy="50" rx="2.5" ry="4" fill="#fff" transform="rotate(15 72 50)"/>
+            <defs>
+              <path id="textPathTopNav" d="M 17,50 A 33,33 0 1,1 83,50" />
+              <path id="textPathBottomNav" d="M 83,50 A 33,33 0 0,1 17,50" />
+            </defs>
+            <text fill="#fff" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="9" letter-spacing="1.8">
+              <textPath href="#textPathTopNav" startOffset="50%" text-anchor="middle">GLOBAL</textPath>
+            </text>
+            <text fill="#fff" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="9" letter-spacing="1.8">
+              <textPath href="#textPathBottomNav" startOffset="50%" text-anchor="middle">COFFEE</textPath>
+            </text>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <span class="text-lg font-black tracking-widest text-white uppercase block">GLOBAL COFFEE</span>
+          <span class="text-[10px] tracking-widest text-stone-400 uppercase block">КОФЕ-БАР </span>
+        </div>
+      </a>
+
+      <!-- DESKTOP NAV MENU -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-stone-300">
+        <a href="#menu" class="hover:text-white transition-colors">Меню</a>
+        <a href="#about" class="hover:text-white transition-colors">О нас</a>
+        <a href="#reviews" class="hover:text-white transition-colors">Отзывы</a>
+        <a href="#quality" class="hover:text-white transition-colors">Стандарты</a>
+        <a href="#contacts" class="hover:text-white transition-colors">Контакты</a>
+      </nav>
+
+      <!-- CART / ORDER ICON -->
+      <div class="flex items-center gap-4">
+        <a href="#menu" class="relative w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-bag-shopping text-white text-sm"></i>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-brand-accent text-white font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-brand-dark">0</span>
+        </a>
+        <button id="mobile-toggle" class="md:hidden text-white p-2">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-darker border-b border-white/10 px-6 py-4 space-y-3 text-xs uppercase font-bold tracking-widest">
+      <a href="#menu" class="block py-2 text-stone-300 hover:text-white">Меню</a>
+      <a href="#about" class="block py-2 text-stone-300 hover:text-white">О нас</a>
+      <a href="#reviews" class="block py-2 text-stone-300 hover:text-white">Отзывы </a>
+      <a href="#quality" class="block py-2 text-stone-300 hover:text-white">Стандарты</a>
+      <a href="#contacts" class="block py-2 text-stone-300 hover:text-white">Контакты</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="py-6 sm:py-10 px-4 max-w-6xl mx-auto">
+    <div class="bg-brand-card border border-white/10 rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden shadow-2xl">
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Hero Column -->
+        <div class="md:col-span-6 space-y-6">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-none">
+            ВКУСНЫЙ<br/>
+            КОФЕ<br/>
+            <span class="font-script text-amber-300 lowercase text-5xl sm:text-6xl font-normal block my-1">начинается</span>
+            ЗДЕСЬ
+          </h1>
+
+          <p class="text-stone-300 text-sm max-w-sm font-normal leading-relaxed">
+            Каждое утро вашим напиткам уделяется особенное внимание: 100% свежеобжаренная арабика и авторская выпечка.
+          </p>
+
+          <div>
+            <a href="#menu" class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-brand-accent hover:bg-brand-accentHover text-white font-bold text-sm tracking-wider uppercase transition-all shadow-lg hover:shadow-brand-accent/30 group">
+              <span>СМОТРЕТЬ МЕНЮ</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Hero Image Column -->
+        <div class="md:col-span-6 relative">
+          <div class="aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden border border-white/15 shadow-2xl relative group">
+            
+            <img 
+              src="https://i.pinimg.com/736x/b9/f3/7b/b9f37babc35ce988f91abf1b2d4f8ee1.jpg" 
+              alt="Global Coffee Cup" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">Точка дня</span>
+                <p class="text-sm font-bold text-white">Карамельный Раф & Круассан</p>
+              </div>
+              <span class="text-xs bg-white/20 text-white font-bold px-3 py-1 rounded-full">4.9 ★</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: PRODUCT CARD BLOCK (Светло-кремовый блок референса) -->
+  <section id="about" class="py-8 px-4 max-w-6xl mx-auto">
+    <div class="bg-brand-cream text-brand-brown rounded-3xl p-6 sm:p-10 border border-brand-creamborder shadow-xl">
+      <div class="grid md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Product Details -->
+        <div class="md:col-span-6 space-y-5">
+          <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-stone-600">
+            <span class="w-6 h-6 rounded-full border border-brand-brown flex items-center justify-center text-[10px]">☕</span>
+            <span>100% ARABICA • СВЕЖАЯ ОБЖАРКА</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-brand-brown leading-tight">
+            ФИРМЕННЫЙ РАФ И ЗЁРНЫ СВЕЖЕЙ ОБЖАРКИ
+          </h2>
+
+          <!-- Rating 2GIS -->
+          <div class="flex items-center gap-2">
+            <div class="flex text-amber-600 text-sm">
+              ★ ★ ★ ★ ★
+            </div>
+            <span class="font-bold text-sm text-brand-brown">4.9</span>
+            <span class="text-xs text-stone-500 font-medium">(709 отзывов) </span> <a href="https://2gis.kz/shymkent/firm/70000001105118851/tab/prices?m=69.60236%2C42.333423%2F16" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full linear-gradient(180deg, #F4EBE1, #2B1810) font-bold text-xs uppercase tracking-wider">2GIS</a>
+          </div>
+
+          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed max-w-md">
+            Идеальный баланс плотности эспрессо, сливок и авторских сиропов собственного приготовления. Без искусственных красителей, только натуральные ингредиенты и свежая выпечка каждую минуту.
+          </p>
+
+          <!-- Counter & Add to Cart -->
+          <div class="flex items-center gap-4 pt-2">
+            
+          </div>
+        </div>
+
+        <!-- Right Product Banner Grid (Из референса) -->
+        <div class="md:col-span-6 grid grid-cols-12 gap-4 items-center">
+          <div class="col-span-8 bg-brand-brown text-white p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[260px] shadow-lg">
+            <div class="w-12 h-12 rounded-full border border-amber-400/40 flex flex-col items-center justify-center text-center">
+              <span class="text-[8px] uppercase tracking-tighter">ЛУЧШИЙ</span>
+              <span class="text-xs">♡</span>
+              <span class="text-[8px] uppercase tracking-tighter">ВЫБОР</span>
+            </div>
+            <div class="mt-8">
+              <div class="text-xs text-amber-300 font-bold uppercase tracking-wider">Флагман сети</div>
+              <h3 class="text-2xl font-black uppercase mt-1 leading-tight">GLOBAL COFFEE</h3>
+              <p class="text-[11px] text-stone-300 mt-2">Каждый 6-й стаканчик бесплатно по программе лояльности</p>
+            </div>
+          </div>
+          <div class="col-span-4 h-full min-h-[260px] rounded-2xl overflow-hidden border border-brand-creamborder shadow-md">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Coffee Special" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: DARK QUOTE BANNER WITH OVAL BADGES (Как на референсе) -->
+  <section class="py-6 px-4 max-w-6xl mx-auto">
+    <div class="bg-brand-card border border-white/10 rounded-3xl p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl">
+      
+      <!-- Top / Corner Oval Badges -->
+      <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+        <span class="oval-badge">ПРОСТО</span>
+        <span class="oval-badge">ВКУСНО</span>
+      </div>
+
+      <!-- Main Central Quote -->
+      <div class="max-w-2xl mx-auto my-4 space-y-3">
+        <div class="text-amber-400 text-lg">♡</div>
+        <h3 class="text-xl sm:text-2xl lg:text-3xl font-black uppercase text-white leading-snug tracking-wide">
+          ЕСТЬ ВЕЩИ, КОТОРЫЕ ОСТАЮТСЯ НАВСЕГДА.<br/>
+          НО ХОРОШИЙ ДЕНЬ ДОЛЖЕН НАЧИНАТЬСЯ<br/>
+          С ЧАШКИ НАСТОЯЩЕГО КОФЕ.
+        </h3>
+      </div>
+
+      <!-- Bottom / Corner Oval Badges -->
+      <div class="flex flex-wrap justify-between items-center gap-4 mt-8">
+        <span class="oval-badge">БЫСТРО</span>
+        <span class="oval-badge">НАТУРАЛЬНО</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREEN 4: 4-STEP QUALITY STANDARDS ("ГОТОВИТЬ С ЛЮБОВЬЮ") -->
+  <section id="quality" class="py-8 px-4 max-w-6xl mx-auto">
+    <div class="bg-brand-cream text-brand-brown rounded-3xl p-6 sm:p-10 border border-brand-creamborder shadow-xl">
+      
+      <!-- Section Header -->
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-xl bg-brand-brown text-white flex items-center justify-center text-lg font-bold">
+          
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-brand-brown">
+          НАШ СТАНДАРТ КАЧЕСТВА
+        </h2>
+      </div>
+
+      <!-- 4 Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="bg-white rounded-2xl p-4 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+          <div>
+            <div class="relative h-40 rounded-xl overflow-hidden mb-4">
+              <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=500&q=80" alt="Зёрна кофе" class="w-full h-full object-cover">
+              <span class="absolute top-2 left-2 w-7 h-7 rounded-full bg-brand-brown text-white text-xs font-bold flex items-center justify-center">01</span>
+            </div>
+            <h4 class="font-black uppercase text-sm text-brand-brown mb-1">СВЕЖИЙ ЗЕРНОВОЙ КОФЕ</h4>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Отобранные зёрна 100% Арабики обжариваются каждые 7 дней для максимального аромата.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-2xl p-4 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+          <div>
+            <div class="relative h-40 rounded-xl overflow-hidden mb-4">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=500&q=80" alt="Экстракция" class="w-full h-full object-cover">
+              <span class="absolute top-2 left-2 w-7 h-7 rounded-full bg-brand-brown text-white text-xs font-bold flex items-center justify-center">02</span>
+            </div>
+            <h4 class="font-black uppercase text-sm text-brand-brown mb-1">ИДЕАЛЬНЫЙ ЭКСТРАКТ</h4>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Профессиональные бариста строго контролируют точный помол и вес эспрессо.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-2xl p-4 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+          <div>
+            <div class="relative h-40 rounded-xl overflow-hidden mb-4">
+              <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=500&q=80" alt="Молоко" class="w-full h-full object-cover">
+              <span class="absolute top-2 left-2 w-7 h-7 rounded-full bg-brand-brown text-white text-xs font-bold flex items-center justify-center">03</span>
+            </div>
+            <h4 class="font-black uppercase text-sm text-brand-brown mb-1">НЕЖНАЯ ПЕНКА</h4>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Взбиваем свежее натуральное и альтернативное молоко до глянцевой структуры.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white rounded-2xl p-4 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+          <div>
+            <div class="relative h-40 rounded-xl overflow-hidden mb-4">
+              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=500&q=80" alt="Выпечка" class="w-full h-full object-cover">
+              <span class="absolute top-2 left-2 w-7 h-7 rounded-full bg-brand-brown text-white text-xs font-bold flex items-center justify-center">04</span>
+            </div>
+            <h4 class="font-black uppercase text-sm text-brand-brown mb-1">СВЕЖАЯ ВЫПЕЧКА</h4>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Хрустящие французские круассаны и донатсы поступают из печи каждое утро.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: MENU CATALOG (Дополнительное меню) -->
+  <section id="menu" class="py-8 px-4 max-w-6xl mx-auto">
+    <div class="text-center space-y-2 mb-8">
+      <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Наш ассортимент</span>
+      <h2 class="text-3xl font-black uppercase text-white tracking-wide">ПОПУЛЯРНОЕ В GLOBAL COFFEE</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Menu Item 1 -->
+      <div class="bg-brand-card border border-white/10 rounded-2xl p-5 hover:border-amber-400/40 transition-colors">
+        <div class="h-44 rounded-xl overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Капучино" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold text-white text-lg">Капучино Классик</h3>
+          <span class="text-amber-400 font-bold text-base">990 ₸</span>
+        </div>
+        <p class="text-xs text-stone-400 mb-4">Эспрессо из 100% Арабики и пышная молочная пенка (350 мл).</p>
+        <button onclick="addToCart()" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-brand-accent text-white font-bold text-xs uppercase tracking-wider transition-colors">
+          
+        </button>
+      </div>
+
+      <!-- Menu Item 2 -->
+      <div class="bg-brand-card border border-white/10 rounded-2xl p-5 hover:border-amber-400/40 transition-colors">
+        <div class="h-44 rounded-xl overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=600&q=80" alt="Соленая карамель" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold text-white text-lg">Латте Солёная Карамель</h3>
+          <span class="text-amber-400 font-bold text-base">1 190 ₸</span>
+        </div>
+        <p class="text-xs text-stone-400 mb-4">Мягкий кофейный напиток с авторским карамельным соусом (400 мл).</p>
+        <button onclick="addToCart()" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-brand-accent text-white font-bold text-xs uppercase tracking-wider transition-colors">
+          
+        </button>
+      </div>
+
+      <!-- Menu Item 3 -->
+      <div class="bg-brand-card border border-white/10 rounded-2xl p-5 hover:border-amber-400/40 transition-colors">
+        <div class="h-44 rounded-xl overflow-hidden mb-4">
+          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Круассан" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-bold text-white text-lg">Шоколадный Круассан</h3>
+          <span class="text-amber-400 font-bold text-base">850 ₸</span>
+        </div>
+        <p class="text-xs text-stone-400 mb-4">Свежая выпечка из хрустящего слоеного теста с начинкой из шоколада.</p>
+        <button onclick="addToCart()" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-brand-accent text-white font-bold text-xs uppercase tracking-wider transition-colors">
+          
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREEN 6: REVIEWS FROM 2GIS (Отзывы из 2ГИС) -->
+  <section id="reviews" class="py-8 px-4 max-w-6xl mx-auto">
+    <div class="bg-brand-cream text-brand-brown rounded-3xl p-6 sm:p-10 border border-brand-creamborder shadow-xl">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-700">
+            <span><i class="fa-solid fa-circle-check"></i> 2ГИС ПОДТВЕРЖДЁННЫЙ ПРОФИЛЬ</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black uppercase text-brand-brown mt-1">ОТЗЫВЫ НАШИХ ГОСТЕЙ</h2>
+        </div>
+
+        <div class="bg-white px-4 py-3 rounded-2xl border border-stone-300 flex items-center gap-3 shrink-0">
+          <span class="text-3xl font-black text-brand-brown">4.9</span>
+          <div class="text-xs">
+            <div class="text-amber-500 font-bold">★ ★ ★ ★ ★</div>
+            <div class="text-stone-500 font-medium">709+ оценок в 2ГИС</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Review 1 -->
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-sm text-black">Айгерим М.</span>
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">2ГИС</span>
+            </div>
+            <div class="text-amber-500 text-xs mb-2">★ ★ ★ ★ ★</div>
+            <p class="text-xs text-stone-700 italic leading-relaxed">
+              «Самый вкусный раф в городе! Вежливые бариста, кофе готовят за 2 минуты. Очень приятно собирать штампы на 6-й бесплатный стаканчик!»
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-100 text-[10px] text-stone-400">
+            Локация: ул. Желтоксан, 5/6
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-black text-sm">Данияр К.</span>
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">2ГИС</span>
+            </div>
+            <div class="text-amber-500 text-xs mb-2">★ ★ ★ ★ ★</div>
+            <p class="text-xs text-stone-700 italic leading-relaxed">
+              «Отличное место, чтобы взять кофе с собой по пути на работу. Круассаны всегда горячие и свежие. Оценка 5 из 5!»
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-100 text-[10px] text-stone-400">
+            Локация: ул. Жангельдина, 10
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-black text-sm">Елена С.</span>
+              <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">2ГИС</span>
+            </div>
+            <div class="text-amber-500 text-xs mb-2">★ ★ ★ ★ ★</div>
+            <p class="text-xs text-stone-700 italic leading-relaxed">
+              «Очень вкусный Айс Латте и приветливый персонал. Чисто, стильно и быстро!»
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-100 text-[10px] text-stone-400">
+            Локация: Кофе-бар Global Coffee
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCREEN 7: BOTTOM FEATURE BADGES (Низ референса) -->
+  <section class="py-6 px-4 max-w-6xl mx-auto">
+    <div class="bg-brand-cream text-brand-brown rounded-2xl p-6 border border-brand-creamborder">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        
+        <div class="flex flex-col items-center p-3">
+          <div class="w-10 h-10 rounded-full border border-brand-brown flex items-center justify-center text-lg mb-2">🍃</div>
+          <span class="text-xs font-black uppercase">100% АРАБИКА</span>
+          <span class="text-[10px] text-stone-500 mt-0.5">Отборные зёрна</span>
+        </div>
+
+        <div class="flex flex-col items-center p-3">
+          <div class="w-10 h-10 rounded-full border border-brand-brown flex items-center justify-center text-lg mb-2">☕</div>
+          <span class="text-xs font-black uppercase">БЫСТРАЯ ПОДАЧА</span>
+          <span class="text-[10px] text-stone-500 mt-0.5">Готовим за 2-3 минуты</span>
+        </div>
+
+        <div class="flex flex-col items-center p-3">
+          <div class="w-10 h-10 rounded-full border border-brand-brown flex items-center justify-center text-lg mb-2">♡</div>
+          <span class="text-xs font-black uppercase">ДЛЯ ВСЕЙ СЕМЬИ</span>
+          <span class="text-[10px] text-stone-500 mt-0.5">Напитки & Выпечка</span>
+        </div>
+
+        <div class="flex flex-col items-center p-3">
+          <div class="w-10 h-10 rounded-full border border-brand-brown flex items-center justify-center text-lg mb-2">🛍️</div>
+          <span class="text-xs font-black uppercase">УДОБНЫЙ НАВЫНОС</span>
+          <span class="text-[10px] text-stone-500 mt-0.5">Эко-стаканчики</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contacts" class="bg-brand-darker border-t border-white/10 py-12 px-4 text-xs text-stone-400">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-black border border-white/80 flex items-center justify-center p-0.5">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <circle cx="50" cy="50" r="47" fill="#000" stroke="#fff" stroke-width="4"/>
+              <circle cx="50" cy="50" r="41" fill="#000" stroke="#fff" stroke-width="1.5"/>
+              <circle cx="50" cy="50" r="23" fill="#fff"/>
+              <path d="M38 37c1-2 4-3 6-1 2 1 2 3 0 4-2 1-3 3-2 5 1 2 3 2 4 0 1-2 3-2 4-1s2 3 1 5c-1 2-3 3-5 3-2 1-4-1-5-3-1-1-3-2-4-2-2 0-3-2-2-4 1-2 2-4 3-6z" fill="#000"/>
+              <path d="M52 46c2-1 4 0 5 2 1 2 3 3 5 1 1-1 3-1 4 1 1 2 0 4-2 5-2 1-3 3-2 5 1 2-1 4-3 4-2 0-3-2-4-3-2-1-2-3-1-4 1-2 0-3-2-4-1-1-1-2 0-3z" fill="#000"/>
+              <path d="M42 55c2 1 3 3 2 5-1 2 0 4 2 5 1 1 1 3 0 4-2 1-3-1-4-3-1-2 0-4-1-6s-1-3 1-5z" fill="#000"/>
+            </svg>
+          </div>
+          <span class="font-black text-white text-base tracking-wider uppercase">GLOBAL COFFEE</span>
+        </div>
+        <p class="leading-relaxed">
+          Сеть уютных кофе-баров. Качественный кофе из арабики и свежая выпечка каждый день.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="font-bold text-white uppercase tracking-wider mb-2">Контакты & Навигатор</h4>
+        <p>📍 Проложите маршрут в <strong>2ГИС</strong> к ближайшему кофе-бару</p>
+        <p>⏰ Режим работы: Ежедневно 07:30 – 22:00</p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-white uppercase tracking-wider">Социальные сети</h4>
+        <a href="https://www.instagram.com/global_coffee_kz" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs uppercase tracking-wider">
+          <i class="fa-brands fa-instagram text-sm"></i>
+          <span>@global_coffee_kz</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="max-w-6xl mx-auto pt-6 border-t border-white/5 text-center text-[11px] text-stone-500">
+      
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    let qty = 1;
+    let cart = 0;
+
+    function changeQty(val) {
+      qty = Math.max(1, qty + val);
+      const qtyElem = document.getElementById('qty-val');
+      if (qtyElem) qtyElem.innerText = qty;
+    }
+
+    function addToCart() {
+      cart += qty;
+      const cartElem = document.getElementById('cart-count');
+      if (cartElem) cartElem.innerText = cart;
+      qty = 1;
+      const qtyElem = document.getElementById('qty-val');
+      if (qtyElem) qtyElem.innerText = 1;
+    }
+
+    // Mobile Menu Toggle
+    document.getElementById('mobile-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
